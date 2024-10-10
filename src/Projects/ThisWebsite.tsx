@@ -1,6 +1,6 @@
 function ThisWebsite() {
   return (
-    <div className="Project">
+    <div className="Project ProjPage">
       <h1>Project: This Website</h1>
       <p className="block">
         While I don't feel like web development is one of my best skills, I do have some familiarity with the area.

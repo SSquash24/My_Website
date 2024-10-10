@@ -1,6 +1,6 @@
 function HotDesk() {
   return (
-    <div className="HotDesk">
+    <div className="HotDesk ProjPage">
       <h1>Project: Hot-Desk Booking System:</h1>
       <p className="block">The hot-desk booking system was a web-based application I created as part of a team.</p>
     </div>
