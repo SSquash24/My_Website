@@ -4,6 +4,7 @@ import Python_Logo from './assets/python-logo.png'
 import Vite_Logo from './assets/Vite.png'
 import './App.css'
 import {Link} from "react-router-dom";
+import Boids from "./Boids.tsx";
 
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
     <div id='App'>
       <div id='TopPart'>
         <div className="sideBySide maxHeight shaded">
+          <Boids/>
           <div className="margin_2em">
             <h1>Hey!</h1>
             <h3>Nice to meet you!<br/> I'm Josh, and I like to code!</h3>
