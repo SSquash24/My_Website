@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #191A19;
+  background-color: #0a1919;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -16,6 +16,7 @@
 }
 
 #root {
+  /*position: absolute;*/
   text-align: center;
 }
 
@@ -104,14 +105,25 @@ button:focus-visible {
 
 
   position: sticky;
+  z-index: 1;
   top: 0;
 }
 
 #mainbody {
   place-items: center;
+  top: 0;
 }
 
 .links {
   display: flex;
   align-items: flex-end;
+}
+
+.alignLeft {
+  text-align: left;
+  width: 100%;
+}
+
+.limitW {
+  max-width: 60vw;
 }

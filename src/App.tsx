@@ -12,11 +12,14 @@ function App() {
   return (
     <div id='App'>
       <div id='TopPart'>
-        <div className="sideBySide maxHeight shaded">
-          <Boids/>
-          <div className="margin_2em">
-            <h1>Hey!</h1>
-            <h3>Nice to meet you!<br/> I'm Josh, and I like to code!</h3>
+        <Boids className="background"/>
+
+        <div className="sideBySide maxHeight">
+          <div className="shaded">
+            <div className="margin_2em">
+              <h1>Hey!</h1>
+              <h3>Nice to meet you!<br/> I'm Josh, and I like to code!</h3>
+            </div>
           </div>
           <img src={IMG_Me} alt="That's me!" className="focus_pic sideBySide margin_2em"/>
         </div>
