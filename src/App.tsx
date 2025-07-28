@@ -15,26 +15,26 @@ function App() {
         <Boids className="background"/>
 
         <div className="sideBySide maxHeight">
-          <div className="shaded">
+          <div className="shaded flex_elem purple">
             <div className="margin_2em">
               <h1>Hey!</h1>
               <h3>Nice to meet you!<br/> I'm Josh, and I like to code!</h3>
             </div>
           </div>
-          <img src={IMG_Me} alt="That's me!" className="focus_pic sideBySide margin_2em"/>
+          <img src={IMG_Me} alt="That's me!" className="focus_pic sideBySide margin_2em flex_elem blue"/>
         </div>
       </div>
 
       <div id='MainPart'>
 
         <h1>About Me:</h1>
-        <div className="aboutMe block">
+        <div className="aboutMe block green">
           <p>I am a computer scientist studying at the University of Oxford, currently in my 3rd year. <br/>
             I've had a passion for software development ever since I first discovered Python when I was 10.</p>
         </div>
 
         <h1>My Skills:</h1>
-        <div className="skills block">
+        <div className="skills block blue">
           <div className="sideBySide">
             <div className="skill">
               <h3>Python</h3>
@@ -52,7 +52,7 @@ function App() {
         </div>
 
         <h1>Projects I've Done:</h1>
-        <div className="projects block">
+        <div className="projects block purple">
           <h2>Personal Projects</h2>
           <p>In my free time, I like to take on personal projects in areas I find interest in:</p>
           <div className="sideBySide">

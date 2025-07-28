@@ -11,6 +11,7 @@ import LinkedInLogo from "./assets/LinkedIn-Blue-96@2x.png";
 import ThisWebsite from "./Projects/ThisWebsite.tsx";
 import HotDesk from "./Projects/HotDesk.tsx";
 import MechanicsSim from "./Projects/MechanicsSim.tsx";
+import Waves from "./Waves.tsx";
 
 const root = createRoot(document.getElementById('root')!);
 root.render(
@@ -33,10 +34,10 @@ root.render(
       <div id="mainbody">
       <Routes>
         <Route path='/' element={<App/>}/>
-        <Route path='/projects/ThisWebsite' element={<ThisWebsite/>} />
-        <Route path='/projects/HotDesk' element={<HotDesk/>} />
-        <Route path='/projects/MechanicsSim' element={<MechanicsSim/>} />
-        <Route path='*' element={<NotFound/>}/>
+        <Route path='/projects/ThisWebsite' element={<div><Waves/><ThisWebsite/></div>} />
+        <Route path='/projects/HotDesk' element={<div><Waves/><HotDesk/></div>} />
+        <Route path='/projects/MechanicsSim' element={<div><Waves/><MechanicsSim/></div>} />
+        <Route path='*' element={<div><Waves/><NotFound/></div>}/>
       </Routes>
       </div>
     </BrowserRouter>

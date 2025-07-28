@@ -1,4 +1,6 @@
 #demoBoids {
+    min-width: 500px;
+    min-height: 250px;
     width: 80vw;
     height: 40vw;
 }

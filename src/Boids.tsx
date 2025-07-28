@@ -1,3 +1,5 @@
+// Boids simulation used on home page
+
 import { useEffect, useRef } from 'react'
 
 
@@ -289,7 +291,6 @@ class QuadTree<Type extends Object> {
             toReturn = toReturn.filter(obj => !this.inside(obj))
             toMove.forEach(obj => this.getSub(obj).addElem(obj))
             this.count -= toReturn.length;
-            console.log(this.bucket - this.slack)
             if (this.count <= this.bucket - this.slack) {
                 this.elems = this.getAll()
                 this.subs = []
@@ -336,11 +337,11 @@ function draw_goal(ctx: CanvasRenderingContext2D, scale : Vector): void {
     quad.getAll()
     if (ctx != null) ctx.fillStyle = "yellow"
     ctx?.beginPath()
-    ctx?.arc(goal.x * scale.x, goal.y * scale.y, 10, 0, 2 * Math.PI)
+    ctx?.arc(goal.x * scale.x, goal.y * scale.y, 10*scale.x, 0, 2 * Math.PI)
     ctx?.fill()
     if (ctx != null) ctx.fillStyle = "lime"
     ctx?.beginPath()
-    ctx?.arc(goal2.x * scale.x, goal2.y * scale.y, 10, 0, 2 * Math.PI)
+    ctx?.arc(goal2.x * scale.x, goal2.y * scale.y, 10*scale.x, 0, 2 * Math.PI)
     ctx?.fill()
 }
 
@@ -352,12 +353,10 @@ function update() {
     if (ctx != null) {
         ctx.canvas.width = ctx.canvas.offsetWidth;
         ctx.canvas.height = ctx.canvas.offsetHeight;
-        console.log(parent)
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
         boids.forEach(boid => boid.update(function (a,b){return quad.allInRange(a,b)}));
         const scale = new Vector(ctx.canvas.width / baseWidth, ctx.canvas.height / baseHeight);
-        if (showQuads) quad.draw(ctx, scale)
-        draw_goal(ctx, scale)
+        if (showQuads) {quad.draw(ctx, scale); draw_goal(ctx, scale)}
         const lost = quad.moveAll()
         lost.forEach(boid => {
             boid.x = baseWidth / 2; boid.y = baseHeight / 2
@@ -372,6 +371,8 @@ function update() {
 
 function Boids({className, id, showQuad = false} : {className: string, id: string, showQuad: boolean}) {
     const ref = useRef<HTMLCanvasElement>(null)
+
+    showQuads = showQuad
 
     useEffect(() => {
         if (ref.current) {
@@ -398,7 +399,6 @@ function Boids({className, id, showQuad = false} : {className: string, id: strin
                 update()
             }, 25);
 
-            showQuads = showQuad
 
             const goal_interval = setInterval(() => {set_goal()}, 10000)
 
