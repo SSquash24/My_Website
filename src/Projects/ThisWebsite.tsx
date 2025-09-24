@@ -20,7 +20,7 @@ function ThisWebsite() {
                                                             target="_blank">Boids</a> algorithm, where each 'boid' tries to
                     flock together like birds. Each boid has 3 main rules they follow:</p>
                 <div className='alignLeft limitW'>
-                    <b>Separation:</b> If any other boids are too close, the boid will move away from them.<br/>
+                    <b>Separation:</b> If any other boids are too close, the boid will move away from them. This rule also tells the boids to turn away from walls.<br/>
                     <b>Cohesion:</b> The boid will move towards any other boids it sees. A boid can 'see' any other boid
                     that is within it's vision radius.<br/>
                     <b>Alignment:</b> The boid will move to face the same direction as the other boids it can see.

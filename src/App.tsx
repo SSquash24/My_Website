@@ -29,7 +29,7 @@ function App() {
 
         <h1>About Me:</h1>
         <div className="aboutMe block green">
-          <p>I am a computer scientist studying at the University of Oxford, currently in my 3rd year. <br/>
+          <p>I am a computer scientist studying at the University of Oxford, currently in my 4th year. <br/>
             I've had a passion for software development ever since I first discovered Python when I was 10.</p>
         </div>
 

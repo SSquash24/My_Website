@@ -1,7 +1,6 @@
 // Boids simulation used on home page
 
-import { useEffect, useRef } from 'react'
-
+import { useEffect, useRef} from 'react'
 
 const baseWidth = 2000
 const baseHeight = 1000
@@ -9,7 +8,7 @@ const yellow_boids = 200
 const red_boids = 30
 const green_boids = 200
 const blue_boids = 500
-const speed = 1.25
+const speed = 0.8
 
 class Vector {
     constructor(public x: number = 0, public y: number = 0) {}
@@ -63,17 +62,18 @@ function pythag_comp(centre: Vector, r: number, point: Vector): boolean {
 let goal = new Vector(750, 200);
 let goal2 = new Vector(250, 200);
 
-
+// boid vars
+let avoidFact = 1.5;
+let centeringFact = 0.5
+let alignmentFact = 0.2
+let goalFact = 0.2
+let enemyFact = 2
 
 class Boid extends Object {
     static sep_range = 25;
-    static avoidFact = 1.5
-    static wallFact = 0.75
+    static wallFact = 1.2
     static vis_range = 60
-    static centeringFact = 0.5
-    static alignmentFact = 0.3
-    static goalFact = 0.15
-    static enemyFact = 1
+
 
     static drawCols = ["yellow", "lime", "aqua", "red"];
 
@@ -95,7 +95,7 @@ class Boid extends Object {
         for (const boid of sep_boids) {
             close.add(new Vector(this.x-boid.x, this.y-boid.y).normalised())
         }
-        close.mult(Boid.avoidFact / sep_boids.length)
+        close.mult(avoidFact / sep_boids.length)
         this.velocity.add(close)
 
 
@@ -121,25 +121,29 @@ class Boid extends Object {
                     numEnemies++
                 }
             })
-            pos_avg.mult(Boid.centeringFact / numFriends)
-            vel_avg.mult(Boid.alignmentFact / numFriends)
-            enemy_avg.mult(Boid.enemyFact / numEnemies)
+            pos_avg.mult(centeringFact / numFriends)
+            vel_avg.normalised()
+            vel_avg.mult(alignmentFact / numFriends)
+            enemy_avg.mult(enemyFact / numEnemies)
 
-            if (numFriends > 0) this.velocity.add(pos_avg)
+            if (numFriends > 0) {
+                this.velocity.add(pos_avg)
+                this.velocity.add(vel_avg)
+            }
             if (numEnemies > 0) this.velocity.add(enemy_avg)
 
-            this.velocity.x += (vel_avg.x - this.velocity.x) * Boid.alignmentFact;
-            this.velocity.y += (vel_avg.y - this.velocity.y) * Boid.alignmentFact;
+            // this.velocity.x += (vel_avg.x - this.velocity.x) * alignmentFact;
+            // this.velocity.y += (vel_avg.y - this.velocity.y) * alignmentFact;
         }
         // goal-seeking
         if (this.type == 0) {
             const path = new Vector(goal.x-this.x, goal.y-this.y).normalised()
-            this.velocity.x += (path.x - this.velocity.x) * Boid.goalFact
-            this.velocity.y += (path.y - this.velocity.y) * Boid.goalFact
+            this.velocity.x += path.x * goalFact
+            this.velocity.y += path.y * goalFact
         } else if (this.type == 1) {
             const path = new Vector(goal2.x-this.x, goal2.y-this.y).normalised()
-            this.velocity.x += (path.x - this.velocity.x) * Boid.goalFact
-            this.velocity.y += (path.y - this.velocity.y) * Boid.goalFact
+            this.velocity.x += path.x * goalFact
+            this.velocity.y += path.y * goalFact
         }
 
 
@@ -159,10 +163,10 @@ class Boid extends Object {
             this.velocity.y = 0.01;
         }
         this.facing = this.velocity.normalised()
-        if (this.velocity.sqrMag() > 36) {
+        if (this.velocity.sqrMag() > 100) {
             this.velocity = new Vector(this.facing.x, this.facing.y)
             // this.velocity = this.facing
-            this.velocity.mult(6)
+            this.velocity.mult(10)
         }
 
     }
@@ -351,15 +355,15 @@ let showQuads = false
 function update() {
 
     if (ctx != null) {
-        ctx.canvas.width = ctx.canvas.offsetWidth;
-        ctx.canvas.height = ctx.canvas.offsetHeight;
+        ctx.canvas.width = ctx.canvas.parentNode.offsetWidth;
+        ctx.canvas.height = ctx.canvas.parentNode.offsetHeight;
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
         boids.forEach(boid => boid.update(function (a,b){return quad.allInRange(a,b)}));
         const scale = new Vector(ctx.canvas.width / baseWidth, ctx.canvas.height / baseHeight);
         if (showQuads) {quad.draw(ctx, scale); draw_goal(ctx, scale)}
         const lost = quad.moveAll()
         lost.forEach(boid => {
-            boid.x = baseWidth / 2; boid.y = baseHeight / 2
+            boid.x = (baseWidth / 2) + (Math.random()*50) - 25; boid.y = (baseHeight / 2) + (Math.random() * 50) - 25
             quad.addElem(boid)
         })
         boids.forEach(elem => elem.draw(ctx as CanvasRenderingContext2D, scale))
@@ -367,6 +371,26 @@ function update() {
 
 }
 
+
+function DebugPanel() {
+    return <div className="sideBySide">
+        <p>Separation: <input type="range" min="0.5" max="3.0" step="0.1" defaultValue={avoidFact} onInput={(event) => {
+            if (event.target != null) avoidFact = event.target.value
+        }} /></p>
+        <p>Cohesion: <input type="range" min="0.0" max="1.0" step="0.01" defaultValue={centeringFact} onInput={(event) => {
+            if (event.target != null) centeringFact = event.target.value
+        }} /></p>
+        <p>Alignment: <input type="range" min="0.0" max="0.3" step="0.01" defaultValue={alignmentFact} onInput={(event) => {
+            if (event.target != null) alignmentFact = event.target.value
+        }} /></p>
+        <p>Goal Seeking: <input type="range" min="0.0" max="0.5" step="0.01" defaultValue={goalFact} onInput={(event) => {
+            if (event.target != null) goalFact = event.target.value
+        }} /></p>
+        <p>Enemy Avoidance: <input type="range" min="0.0" max="3.0" step="0.01" defaultValue={enemyFact} onInput={(event) => {
+            if (event.target != null) enemyFact = event.target.value
+        }} /></p>
+    </div>
+}
 
 
 function Boids({className, id, showQuad = false} : {className: string, id: string, showQuad: boolean}) {
@@ -409,7 +433,14 @@ function Boids({className, id, showQuad = false} : {className: string, id: strin
     }, [])
 
     // return <canvas ref={ref} width="2000" height="1000" />
-    return <canvas ref={ref} className={className} id={id}/>
+    if (showQuad) {
+        return <div className={className} id={id}>
+            <canvas ref={ref}/>
+            <DebugPanel />
+        </div>
+    }
+    else
+        return <div className={className} id={id}><canvas ref={ref} /></div>
 }
 
 export default Boids

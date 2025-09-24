@@ -62,7 +62,6 @@ function animate() {
         })
 
         interval += step
-        console.log(interval)
         // interval %= ctx.canvas.width
     }
 
