@@ -67,7 +67,7 @@ let avoidFact = 1.5;
 let centeringFact = 0.5
 let alignmentFact = 0.2
 let goalFact = 0.2
-let enemyFact = 2
+let enemyFact = 1.5
 
 class Boid extends Object {
     static sep_range = 25;

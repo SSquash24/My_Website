@@ -15,7 +15,7 @@ function HotDesk() {
                 Front-End and much of the testing (Which is where I learned the skills to create this Website!).
                 The front-end was tested using <a href="https://jestjs.io/" target='_blank'>Jest</a>, and the python back-end was tested
                 using <a href="https://docs.pytest.org/" target='_blank'>pytest</a>.
-                <br/>
+                <br/>Added sliders to the Boid demonstration, and adjusted simulation
                 Overall, this project was relatively short - A couple of months whilst we were all also focusing on our
                 studies, but it was a great introduction to working on a shared project as a team: Using GitHub,
                 organising meetings, and utilising our different talents and experiences to achieve a unified goal.
