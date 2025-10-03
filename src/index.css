@@ -27,8 +27,8 @@
 
 a {
   font-weight: 500;
-  /*color: #646cff;*/
-  color: #D8E9A8;
+  color: #646cff;
+  /*color: #D8E9A8;*/
   text-decoration: inherit;
 }
 a:hover {
@@ -131,4 +131,19 @@ button:focus-visible {
 
 .limitW {
   max-width: 60vw;
+}
+
+#return_button {
+    font-size: 1.5em;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    background-color: #1a1a1a;
+    cursor: pointer;
+    transition: border-color 0.25s;
+}
+
+#return_button:hover {
+    border-color: #646cff;
+
 }

@@ -1,5 +1,5 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import {StrictMode} from 'react'
+import {createRoot} from 'react-dom/client'
 import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
 import './index.css'
 
@@ -12,34 +12,41 @@ import ThisWebsite from "./Projects/ThisWebsite.tsx";
 import HotDesk from "./Projects/HotDesk.tsx";
 import MechanicsSim from "./Projects/MechanicsSim.tsx";
 import Waves from "./Waves.tsx";
+import TE3 from "./Projects/TE3";
+import TE5 from "./Projects/TE5";
+
+
+const return_button = <div><Link to='/' id="return_button">Return Home</Link><p></p></div>
 
 const root = createRoot(document.getElementById('root')!);
 root.render(
-  <StrictMode>
-    <BrowserRouter>
-      <div id="topBar">
-        <Link to='/' className='top_elem' id='top_name'>Joshua Coombe</Link>
-        <div className="links">
-          <a href="https://github.com/SSquash24" target="_blank">
-            <img src={githubURL} className="top_elem" alt="Github link"/>
-          </a>
-          <a href="https://www.linkedin.com/in/joshua-coombe-707939320" target="_blank">
-            <img src={LinkedInLogo} className="top_elem" alt="LinkedIn link"/>
-          </a>
-          <a href="mailto:joshua.coombe@worc.ox.ac.uk" className="top_elem in_block">
-            joshua.coombe@worc.ox.ac.uk
-          </a>
-        </div>
-      </div>
-      <div id="mainbody">
-      <Routes>
-        <Route path='/' element={<App/>}/>
-        <Route path='/projects/ThisWebsite' element={<div><Waves/><ThisWebsite/></div>} />
-        <Route path='/projects/HotDesk' element={<div><Waves/><HotDesk/></div>} />
-        <Route path='/projects/MechanicsSim' element={<div><Waves/><MechanicsSim/></div>} />
-        <Route path='*' element={<div><Waves/><NotFound/></div>}/>
-      </Routes>
-      </div>
-    </BrowserRouter>
-  </StrictMode>,
+    <StrictMode>
+        <BrowserRouter>
+            <div id="topBar">
+                <Link to='/' className='top_elem' id='top_name'>Joshua Coombe</Link>
+                <div className="links">
+                    <a href="https://github.com/SSquash24" target="_blank">
+                        <img src={githubURL} className="top_elem" alt="Github link"/>
+                    </a>
+                    <a href="https://www.linkedin.com/in/joshua-coombe-707939320" target="_blank">
+                        <img src={LinkedInLogo} className="top_elem" alt="LinkedIn link"/>
+                    </a>
+                    <a href="mailto:joshua.coombe@worc.ox.ac.uk" className="top_elem in_block">
+                        joshua.coombe@worc.ox.ac.uk
+                    </a>
+                </div>
+            </div>
+            <div id="mainbody">
+                <Routes>
+                    <Route path='/' element={<App/>}/>
+                    <Route path='/projects/ThisWebsite' element={<div><Waves/><ThisWebsite/>{return_button}</div>}/>
+                    <Route path='/projects/HotDesk' element={<div><Waves/><HotDesk/>{return_button}</div>}/>
+                    <Route path='/projects/MechanicsSim' element={<div><Waves/><MechanicsSim/>{return_button}</div>}/>
+                    <Route path='/projects/TE3' element={<div><Waves/><TE3/>{return_button}</div>}/>
+                    <Route path='/projects/TE5' element={<div><Waves/><TE5/>{return_button}</div>}/>
+                    <Route path='*' element={<div><Waves/><NotFound/></div>}/>
+                </Routes>
+            </div>
+        </BrowserRouter>
+    </StrictMode>,
 )

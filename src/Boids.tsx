@@ -352,11 +352,11 @@ function draw_goal(ctx: CanvasRenderingContext2D, scale : Vector): void {
 let showQuads = false
 
 
-function update() {
+function update(heightOffset: number) {
 
     if (ctx != null) {
         ctx.canvas.width = ctx.canvas.parentNode.offsetWidth;
-        ctx.canvas.height = ctx.canvas.parentNode.offsetHeight;
+        ctx.canvas.height = ctx.canvas.parentNode.offsetHeight - heightOffset;
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
         boids.forEach(boid => boid.update(function (a,b){return quad.allInRange(a,b)}));
         const scale = new Vector(ctx.canvas.width / baseWidth, ctx.canvas.height / baseHeight);
@@ -373,7 +373,7 @@ function update() {
 
 
 function DebugPanel() {
-    return <div className="sideBySide">
+    return <div className="sideBySide" id="debugPanel">
         <p>Separation: <input type="range" min="0.5" max="3.0" step="0.1" defaultValue={avoidFact} onInput={(event) => {
             if (event.target != null) avoidFact = event.target.value
         }} /></p>
@@ -416,11 +416,10 @@ function Boids({className, id, showQuad = false} : {className: string, id: strin
             boids.forEach(elem => quad.addElem(elem))
             //Implementing the setInterval method
             const interval = setInterval(() => {
-                // if (ref.current) {
-                //   ref.current.width = screen.width
-                //   ref.current.height = screen.height
-                // }
-                update()
+                const panel = document.getElementById("debugPanel")
+                let height = 0
+                if (panel != null) height = panel.offsetHeight
+                update(height)
             }, 25);
 
 
@@ -436,7 +435,7 @@ function Boids({className, id, showQuad = false} : {className: string, id: strin
     if (showQuad) {
         return <div className={className} id={id}>
             <canvas ref={ref}/>
-            <DebugPanel />
+            <DebugPanel/>
         </div>
     }
     else
