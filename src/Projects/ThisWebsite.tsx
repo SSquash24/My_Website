@@ -8,10 +8,10 @@ function ThisWebsite() {
             {/*<Waves />*/}
             <p className="block green">
                 While I don't feel like web development is one of my best skills, I do have some familiarity with the
-                area.
-                I created this website using <a href="https://vite.dev/" target="_blank">Vite</a> and <a
-                href="https://react.dev/" target="_blank">React</a>,
-                and am hosting it myself.
+                area. I created this website using <a href="https://vite.dev/" target="_blank">Vite</a> and <a
+                href="https://react.dev/" target="_blank">React</a>, and am hosting it myself.
+                You can find the code for this website <a href="https://github.com/SSquash24/My_Website" target="_blank">here
+                </a> on my github.
             </p>
             <h2>Front Page Simulation</h2>
 
@@ -39,14 +39,17 @@ function ThisWebsite() {
                     In my simulation, all boids see red boids as an enemy (except for red themselves)
                 </div>
             </div>
-            <p> To allow many boids to be simulated in real time my simulation makes use of a quad-tree.
-                A quad-tree works by recursively splitting its area into 4 sub-areas, if there are too many boids in that area.
-                Hence, areas where boids are densely populated are split up into very small areas, whereas sparcely populated areas are split up little.
-                When a boid needs to find all other boids in a certain radius, it only needs to check boids that are in sub-areas that are (at least partially) within that radius.
-                This avoids each boid needing to check every other boid to find those that are within visible range, every timestep.
-                Below you can see the simulation again, but now with the quad-tree visible:
-            </p>
+            <div className="block blue">
+                <p> To allow many boids to be simulated in real time my simulation makes use of a quad-tree.
+                    A quad-tree works by recursively splitting its area into 4 sub-areas, if there are too many boids in that area.
+                    Hence, areas where boids are densely populated are split up into very small areas, whereas sparcely populated areas are split up little.
+                    When a boid needs to find all other boids in a certain radius, it only needs to check boids that are in sub-areas that are (at least partially) within that radius.
+                    This avoids each boid needing to check every other boid to find those that are within visible range, every timestep.
+                    Below you can see the simulation again, but now with the quad-tree visible:
+                </p>
+            </div>
             <Boids id='demoBoids' showQuad/>
+
         </div>
     )
 }

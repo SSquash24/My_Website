@@ -93,6 +93,13 @@
   border-radius: 2em;
 }
 
+.pic {
+    width: 50vw;
+    min-width:200px;
+    margin-bottom:5vh;
+    border-radius:2vw;
+}
+
 .skill {
   padding: 2em;
   margin-left: 2em;

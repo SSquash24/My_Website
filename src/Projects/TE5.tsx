@@ -1,12 +1,11 @@
 import {Link} from "react-router-dom";
 import TE5_Pic from "../assets/TE5.png"
 import TE5_Cycle_Pic from "../assets/TE5_Cycle.png"
-import "./TE5.css"
 
 function TE5() {
     return (<div className="TE5 ProjPage">
         <h1>Project: Skardin TE5</h1>
-        <img src={TE5_Pic} alt="TE5 overview page" className="screenshot"/>
+        <img src={TE5_Pic} alt="TE5 overview page" className="pic"/>
         <div className="block purple">
             The TE5 (Testing Equipment 5) Was the second project I undertook for <a href='https://www.skardin.com/'>Skardin</a>,
             a few years after the <Link to="projects/TE3">TE3</Link>. The aim of this project was to create a tool that
@@ -25,7 +24,7 @@ function TE5() {
         </div>
         <div>
             <h5>The cycle page of a selected port:</h5>
-            <img src={TE5_Cycle_Pic} alt="TE5_Cycle_Pic" className="screenshot"/>
+            <img src={TE5_Cycle_Pic} alt="TE5_Cycle_Pic" className="pic"/>
         </div>
         <div className="block blue">
             In order to set up the device, the user could plug in a USB stick with the desired settings in a file to the
