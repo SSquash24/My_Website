@@ -5,3 +5,9 @@
     height: 40vw;
     margin-bottom:2em;
 }
+
+.list {
+    margin-left: 10%;
+    text-align: left;
+    max-width:80%;
+}

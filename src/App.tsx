@@ -1,7 +1,6 @@
-import IMG_Me from './assets/ME_UPDATE.jpg'
+import IMG_Me from './assets/me.jpg'
 import CPP_Logo from './assets/cpp_logo.png'
 import Python_Logo from './assets/python-logo.png'
-import Vite_Logo from './assets/Vite.png'
 import React_Logo from './assets/reactjs-icon.svg'
 import RISC_Logo from './assets/RISC-V.svg'
 import './App.css'
@@ -19,8 +18,9 @@ function App() {
                 <div className="sideBySide maxHeight">
                     <div className="shaded flex_elem purple">
                         <div className="margin_2em">
-                            <h1>Hey!</h1>
-                            <h3>Nice to meet you!<br/> I'm Josh, and I like to code!</h3>
+                            <h3>Hi, I'm</h3>
+                            <h1>Joshua Coombe</h1>
+                            <h3>Student at Oxford University, graduating 2026</h3>
                         </div>
                     </div>
                     <img src={IMG_Me} alt="That's me!" className="focus_pic sideBySide margin_2em flex_elem blue"/>
@@ -42,9 +42,8 @@ function App() {
                         <div className="skill">
                             <h3>Python</h3>
                             <img src={Python_Logo} alt="Python Logo" className="logo"/>
-                            <p>Python was the first programming language I ever used, back when I was 10. I have used
-                                python
-                                for many projects, both personal and for companies.</p>
+                            <p>Python was the first programming language I ever used, back when I was 10. I have since
+                                used python for many projects, both personal and for companies.</p>
                         </div>
                         <div className="skill">
                             <h3>C++</h3>
@@ -67,7 +66,6 @@ function App() {
                     <div className="sideBySide">
                         <div className="skill">
                             <Link to="/projects/ThisWebsite"><h3>This Website!</h3></Link>
-                            <img src={Vite_Logo} alt="Vite Logo" className="logo"/>
                             <p>I created this website myself using Vite and React.</p>
                         </div>
                         <div className="skill">
@@ -91,26 +89,6 @@ function App() {
                                 mains sockets would power on/off.</p>
                         </div>
                     </div>
-
-                    {/*<h2>Still Working on...</h2>*/}
-                    {/*<div className="sideBySide">*/}
-                    {/*    <div className="skill">*/}
-                    {/*        <h3>Water Graphics Simulations</h3>*/}
-                    {/*        <p>Using C++, OpenGL and GLFW, I am trying to simulate realistic water and lighting in real*/}
-                    {/*            time,*/}
-                    {/*            implementing*/}
-                    {/*            waves (via fast-fourier transforms), reflections, refractions.</p>*/}
-                    {/*    </div>*/}
-                    {/*    <div className="skill">*/}
-                    {/*        <h3>Chess AI (with physical board)</h3>*/}
-                    {/*        <p>The goal of this project is to have a physical chess board you can play against, using*/}
-                    {/*            magnets, sensors,*/}
-                    {/*            and lights. This meant encoding a chess AI on a device with limited hardware*/}
-                    {/*            capabilities (Raspberry Pi).*/}
-                    {/*            Unfortunately as Uni got busy I had to put this project on hold, but I still intend to*/}
-                    {/*            return very*/}
-                    {/*            soon!</p>*/}
-                    {/*    </div>*/}
                 </div>
 
                 <h1>Right Now I Am Working On:</h1>
